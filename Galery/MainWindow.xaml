@@ -1,0 +1,79 @@
+﻿<Window x:Class="Galery.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galery"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        FontFamily="Franklin Gothic">
+   
+    <Window.Resources>
+    
+        <DataTemplate x:Key="PaintTemplate">
+            <Grid Height="230">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Stretch="UniformToFill" Width="450" Margin="10">
+                    <Image.Source>
+                        <BitmapImage UriSource="{Binding IdPaintNavigation.PhotoPaint}"/>
+                    </Image.Source>
+                </Image>
+                <StackPanel Grid.Column="1" Margin="10">
+                    <TextBlock Text="{Binding IdCreatorNavigation.Name, StringFormat = Художник: {0}}"/>
+                    <TextBlock Text="{Binding IdPaintNavigation.DateOfCreate, StringFormat = Дата создания: {0}}"/>
+                    <TextBlock Text="{Binding IdPaintNavigation.GenreNavigation.Genre1, StringFormat = Жанр: {0}}"/>
+                    <TextBlock Text="{Binding IdPaintNavigation.TimeNavigation.Time1, StringFormat = Период: {0}}"/>
+                    <TextBlock Text="{Binding IdPaintNavigation.Location, StringFormat = Местоположение: {0}}"/>
+                    <TextBlock Text="{Binding IdPaintNavigation.Material, StringFormat = Материал: {0}}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid ClipToBounds="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120px"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Stretch="UniformToFill" StretchDirection="Both" Margin="0,-125,0,0">
+            <Image.Source>
+                <BitmapImage UriSource="/images/noinduska.jpeg"/>
+            </Image.Source>
+        </Image>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" MinHeight="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button BorderThickness="0" Grid.Column="0" Background="#fbf2e7">
+                Что нового?
+            </Button>
+            <Button Click ="OurTime" BorderThickness="0" Grid.Column="1" Background="#fbf2e7">
+                Искусство нашего времени
+            </Button>
+            <ComboBox Grid.Column="2" BorderThickness="0" ItemsSource="{Binding Time}" DisplayMemberPath="Time1" SelectedItem="{Binding SelectedTime}" 
+                      HorizontalContentAlignment="Center"
+            />
+        </Grid>
+        <ListView Grid.Row="2" ItemsSource="{Binding Paints}" SelectedItem="{Binding SelectedPaint}" ItemTemplate="{StaticResource PaintTemplate}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить" Click="Add"/>
+                    <MenuItem Header="Редактировать" IsEnabled="{Binding IsAdmin}" Click="Edit"/>
+                    <MenuItem Header="Удалить" Click="Remove"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.Background>
+                <SolidColorBrush Color="#fbf2e7"/>
+            </ListView.Background>
+        </ListView>
+    </Grid>
+</Window>

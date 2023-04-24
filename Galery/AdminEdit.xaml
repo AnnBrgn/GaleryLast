@@ -1,0 +1,58 @@
+﻿<Window x:Class="Galery.AdminEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galery"
+        mc:Ignorable="d"
+        Title="AdminEdit" Height="380" Width="700"
+        FontFamily="Franklin Gothic">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.RowSpan="2" Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Margin="8" Padding="5">
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                <TextBlock Text="Художник" FontSize="15" HorizontalAlignment="Center"/>
+                <ComboBox                     
+                    DisplayMemberPath="Name" 
+                    ItemsSource="{Binding Creators}"
+                    SelectedItem="{Binding Paint.IdCreatorNavigation}" 
+                    Width="150" Height="25"/>
+                <TextBlock Text="Дата создания" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Paint.IdPaintNavigation.DateOfCreate}" Height="25"/>
+                <TextBlock Text="Жанр" FontSize="15" HorizontalAlignment="Center"/>
+                <ComboBox 
+                    DisplayMemberPath="Genre1" 
+                    ItemsSource="{Binding Genres}" 
+                    SelectedItem="{Binding Paint.IdPaintNavigation.GenreNavigation}" 
+                    Height="25"/>
+                <TextBlock Text="Период" FontSize="15" HorizontalAlignment="Center"/>
+                <ComboBox 
+                    DisplayMemberPath="Time1" 
+                    ItemsSource="{Binding Times}" 
+                    SelectedItem="{Binding Paint.IdPaintNavigation.TimeNavigation}" Height="25"/>
+                <TextBlock Text="Местоположение" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Paint.IdPaintNavigation.Location}" Height="25"/>
+                <TextBlock Text="Материал" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Paint.IdPaintNavigation.Material}" Height="25"/>
+                <Button Click="Apply" Content="Применить" FontSize="15" Margin="10"/>
+                <Button Click="AddPhoto" Content="Применить" FontSize="15" Margin="10"/>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="1" Margin="10">
+            <TextBlock Text="{Binding Paint.IdCreatorNavigation.Name, StringFormat = Художник: {0}}"/>
+            <TextBlock Text="{Binding Paint.IdPaintNavigation.DateOfCreate, StringFormat = Дата создания: {0}}"/>
+            <TextBlock Text="{Binding Paint.IdPaintNavigation.GenreNavigation.Genre1, StringFormat = Жанр: {0}}"/>
+            <TextBlock Text="{Binding Paint.IdPaintNavigation.TimeNavigation.Time1, StringFormat = Период: {0}}"/>
+            <TextBlock Text="{Binding Paint.IdPaintNavigation.Location, StringFormat = Местоположение: {0}}"/>
+            <TextBlock Text="{Binding Paint.IdPaintNavigation.Material, StringFormat = Материал: {0}}"/>
+        </StackPanel>
+        <Image  Margin="10" Source="{Binding Paint.IdPaintNavigation.PhotoPaint}"/>
+    </Grid>
+</Window>
