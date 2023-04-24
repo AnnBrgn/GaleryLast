@@ -76,6 +76,7 @@ namespace Galery
                 }
             }
             //что-то
+            //ещё что-то
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Paint)));
         }
     }
