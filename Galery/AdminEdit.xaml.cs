@@ -74,9 +74,9 @@ namespace Galery
                     Paint.IdPaintNavigation.PhotoPaint = newPath;
                     File.Copy(openFileDialog.FileName, Paint.IdPaintNavigation.PhotoPaint);
                 }
-                
-                
             }
+            //что-то
+            //ещё что-то
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Paint)));
         }
     }
