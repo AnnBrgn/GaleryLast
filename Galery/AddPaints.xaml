@@ -1,0 +1,27 @@
+﻿<Window x:Class="Galery.AddPaints"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galery"
+        mc:Ignorable="d"
+        Title="AddPaints" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="15">
+            <TextBlock Text="Дополнительная информация:" HorizontalAlignment="Center" FontSize="15" Margin="8"/>
+            <ComboBox Width="200" Height="20" Margin="3"/>
+            <ComboBox Width="200" Height="20" Margin="3"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Button Width="200" Height="20"/>
+        </StackPanel>
+    </Grid>
+</Window>
