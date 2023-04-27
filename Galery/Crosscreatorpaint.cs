@@ -9,6 +9,8 @@ public partial class Crosscreatorpaint
 
     public int IdPaint { get; set; }
 
+    public int Id { get; set; }
+
     public virtual Creator IdCreatorNavigation { get; set; } = null!;
 
     public virtual Paint IdPaintNavigation { get; set; } = null!;

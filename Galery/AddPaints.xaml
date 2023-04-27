@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
-        Title="AddPaints" Height="450" Width="800">
-    <Grid>
+        Title="AddPaints" Height="500" Width="800"
+        FontFamily="Franklin Gothic">
+    <Grid Background="#FFFAF2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="300"/>
@@ -14,14 +15,53 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="250"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="1" Margin="15">
-            <TextBlock Text="Дополнительная информация:" HorizontalAlignment="Center" FontSize="15" Margin="8"/>
-            <ComboBox Width="200" Height="20" Margin="3"/>
-            <ComboBox Width="200" Height="20" Margin="3"/>
+        
+        <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#373432" Margin="10" Padding="5">
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <TextBlock Text="Информация о картине:" HorizontalAlignment="Center" FontSize="15" Margin="15"/>
+
+                <TextBlock Text="Художник" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Creator}" Margin="3" Width="180" Height="20"/>
+
+                <TextBlock Text="Дата создания" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Paint.DateOfCreate}" Margin="3" Width="180" Height="20"/>
+
+                <TextBlock Text="Местоположение" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Paint.Location}" Margin="3" Width="180" Height="20"/>
+
+                <TextBlock Text="Материал" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Paint.Material}" Margin="3" Width="180" Height="20"/>
+            </StackPanel>
+        </Border>
+
+        <Border  Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="#373432" Margin="10">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="15">
+                <TextBlock Text="Дополнительная информация:" HorizontalAlignment="Center" FontSize="15" Margin="8"/>
+
+                <TextBlock Text="Жанр" HorizontalAlignment="Center"/>
+                <ComboBox DisplayMemberPath="Genre1" 
+                          SelectedItem="{Binding Paint.GenreNavigation}" 
+                          ItemsSource="{Binding ListGenre}" 
+                          Width="170" Height="20" Margin="3"/>
+                <TextBlock Text="Эпоха" HorizontalAlignment="Center"/>
+                <ComboBox DisplayMemberPath="Time1" 
+                          SelectedItem="{Binding Paint.TimeNavigation}" 
+                          ItemsSource="{Binding ListTime}" 
+                          Width="170" Height="20" Margin="3"/>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="{Binding Paint.PhotoPaint}" 
+                   Width="400" Stretch="UniformToFill" Height="400"/>
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <Button Width="200" Height="20"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">
+            <Button Click="AddPaintPhoto" Content="Добавить фото" 
+                    Background="#FAFAFA" Width="120" Height="20" Margin="15"
+            />
         </StackPanel>
+        <Button Grid.Column="1" Grid.Row="2" Content="Сохранить" Click="AddPaint" Background="#FAFAFA" Width="120" Height="20" Margin="15"/>
     </Grid>
 </Window>

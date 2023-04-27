@@ -23,6 +23,8 @@ public partial class Paint
 
     public string? Location { get; set; }
 
+    public virtual ICollection<Crosscreatorpaint> Crosscreatorpaints { get; } = new List<Crosscreatorpaint>();
+
     public virtual Genre? GenreNavigation { get; set; }
 
     public virtual Time? TimeNavigation { get; set; }

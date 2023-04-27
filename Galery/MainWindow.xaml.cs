@@ -64,8 +64,6 @@ namespace Galery
                 Include(s => s.IdPaintNavigation.GenreNavigation).
                 Include(s => s.IdPaintNavigation).
                 Where(s => selectedTime.Id == 0 || s.IdPaintNavigation.Time == selectedTime.Id).ToList();
-
-
             /*var r = galleryContext.Paints.ToList();
             Paints = new();
             for (int i = 0; i < r.Count; i++)
@@ -107,7 +105,7 @@ namespace Galery
 
         private void Add(object sender, RoutedEventArgs e)
         {
-
+            new AddPaints().Show();
         }
         private void Edit(object sender, RoutedEventArgs e)
         {
@@ -117,11 +115,13 @@ namespace Galery
                 SelectedPaint
             ).ShowDialog();
             Sort();
-
         }
         private void Remove(object sender, RoutedEventArgs e)
         {
-
+            galleryContext.Crosscreatorpaints.Remove(SelectedPaint);
+            galleryContext.Paints.Remove(SelectedPaint.IdPaintNavigation);
+            galleryContext.SaveChanges();
+            Sort();
         }
     }
 }

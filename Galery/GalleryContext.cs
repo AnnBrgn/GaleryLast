@@ -29,13 +29,13 @@ public partial class GalleryContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=192.168.1.14;user=student;password=student;database=gallery", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+        => optionsBuilder.UseMySql("server=192.168.1.14;user=student;password=student;database=gallery", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.28-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8mb4_0900_ai_ci")
-            .HasCharSet("utf8mb4");
+            .UseCollation("utf8_general_ci")
+            .HasCharSet("utf8");
 
         modelBuilder.Entity<Admin>(entity =>
         {
@@ -43,7 +43,9 @@ public partial class GalleryContext : DbContext
 
             entity.ToTable("admin");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
             entity.Property(e => e.Lastname)
                 .HasMaxLength(255)
                 .HasColumnName("lastname");
@@ -71,8 +73,12 @@ public partial class GalleryContext : DbContext
 
             entity.HasIndex(e => e.Genre, "FK_creator_genre");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Genre).HasColumnName("genre");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Genre)
+                .HasColumnType("int(11)")
+                .HasColumnName("genre");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
@@ -84,26 +90,33 @@ public partial class GalleryContext : DbContext
 
         modelBuilder.Entity<Crosscreatorpaint>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("crosscreatorpaint");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.HasIndex(e => e.IdCreator, "FK_crosscreatorpaint_idCreator");
+            entity.ToTable("crosscreatorpaint");
 
-            entity.HasIndex(e => e.IdPaint, "FK_crosscreatorpaint_idPaint2");
+            entity.HasIndex(e => e.IdCreator, "FK_crosscreatorpaint_creator_id");
 
-            entity.Property(e => e.IdCreator).HasColumnName("idCreator");
-            entity.Property(e => e.IdPaint).HasColumnName("idPaint");
+            entity.HasIndex(e => e.IdPaint, "FK_crosscreatorpaint_paint_id");
 
-            entity.HasOne(d => d.IdCreatorNavigation).WithMany()
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.IdCreator)
+                .HasColumnType("int(11)")
+                .HasColumnName("idCreator");
+            entity.Property(e => e.IdPaint)
+                .HasColumnType("int(11)")
+                .HasColumnName("idPaint");
+
+            entity.HasOne(d => d.IdCreatorNavigation).WithMany(p => p.Crosscreatorpaints)
                 .HasForeignKey(d => d.IdCreator)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_crosscreatorpaint_idCreator");
+                .HasConstraintName("FK_crosscreatorpaint_creator_id");
 
-            entity.HasOne(d => d.IdPaintNavigation).WithMany()
+            entity.HasOne(d => d.IdPaintNavigation).WithMany(p => p.Crosscreatorpaints)
                 .HasForeignKey(d => d.IdPaint)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_crosscreatorpaint_idPaint2");
+                .HasConstraintName("FK_crosscreatorpaint_paint_id");
         });
 
         modelBuilder.Entity<Genre>(entity =>
@@ -112,7 +125,9 @@ public partial class GalleryContext : DbContext
 
             entity.ToTable("genre");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
             entity.Property(e => e.Genre1)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
@@ -129,12 +144,18 @@ public partial class GalleryContext : DbContext
 
             entity.HasIndex(e => e.Time, "FK_paint_time");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.DateOfCreate).HasColumnName("dateOfCreate");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.DateOfCreate)
+                .HasColumnType("int(11)")
+                .HasColumnName("dateOfCreate");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .HasColumnName("description");
-            entity.Property(e => e.Genre).HasColumnName("genre");
+            entity.Property(e => e.Genre)
+                .HasColumnType("int(11)")
+                .HasColumnName("genre");
             entity.Property(e => e.Location)
                 .HasMaxLength(255)
                 .HasColumnName("location");
@@ -144,7 +165,9 @@ public partial class GalleryContext : DbContext
             entity.Property(e => e.PhotoPaint)
                 .HasMaxLength(255)
                 .HasColumnName("photoPaint");
-            entity.Property(e => e.Time).HasColumnName("time");
+            entity.Property(e => e.Time)
+                .HasColumnType("int(11)")
+                .HasColumnName("time");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .HasColumnName("title");
@@ -164,7 +187,9 @@ public partial class GalleryContext : DbContext
 
             entity.ToTable("time");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
             entity.Property(e => e.Time1)
                 .HasMaxLength(255)
                 .HasColumnName("time");

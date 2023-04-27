@@ -11,5 +11,7 @@ public partial class Creator
 
     public int? Genre { get; set; }
 
+    public virtual ICollection<Crosscreatorpaint> Crosscreatorpaints { get; } = new List<Crosscreatorpaint>();
+
     public virtual Genre? GenreNavigation { get; set; }
 }
