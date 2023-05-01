@@ -45,7 +45,8 @@ namespace Galery
 
         private void buttonSignIn(object sender, RoutedEventArgs e)
         {
-            MainWindow mv = new MainWindow();
+            galleryContext.Dispose();
+            MainWindow mv = new MainWindow(false);
             mv.Show();
             Close();
         }

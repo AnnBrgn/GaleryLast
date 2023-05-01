@@ -45,12 +45,13 @@ namespace Galery
         public string SearchText { get; set; }
 
         public bool IsAdmin { get; set; }
+        public Visibility Admin { get { return IsAdmin ? Visibility.Visible : Visibility.Hidden; } }
         public MainWindow(bool v = false)
         {
             InitializeComponent();
+            galleryContext = new GalleryContext();
             IsAdmin = v;
             DataContext = this;
-            galleryContext = new GalleryContext();
             Time = galleryContext.Times.ToList();
             Time.RemoveAt(Time.Count - 1);
             Time.Add(new Galery.Time { Time1 = "Все эпохи" });
@@ -105,7 +106,8 @@ namespace Galery
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            new AddPaints().Show();
+            if(IsAdmin)
+                new AddPaints().Show();
         }
         private void Edit(object sender, RoutedEventArgs e)
         {

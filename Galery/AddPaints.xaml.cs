@@ -47,7 +47,7 @@ namespace Galery
             {
 
                 string[] pathSplit = openFileDialog.FileName.Split("\\");
-                string newPath = @$"C:\Users\Student\Desktop\GaleryGallery-master\Galery\images\{pathSplit[pathSplit.Length - 1]}";
+                string newPath = Environment.CurrentDirectory + @$"\..\..\..\images\{pathSplit[pathSplit.Length - 1]}";
                 if (File.Exists(newPath))
                 {
                     MessageBoxResult messageBoxResult = MessageBox.Show("Файл с таким именем уже существует. Хотите использовать существующее изображение?", "Предупреждение", MessageBoxButton.YesNo);

@@ -65,7 +65,7 @@
         </Grid>
         <ListView Grid.Row="2" ItemsSource="{Binding Paints}" SelectedItem="{Binding SelectedPaint}" ItemTemplate="{StaticResource PaintTemplate}">
             <ListView.ContextMenu>
-                <ContextMenu>
+                <ContextMenu Visibility="{Binding Admin}">
                     <MenuItem Header="Добавить" Click="Add"/>
                     <MenuItem Header="Редактировать" IsEnabled="{Binding IsAdmin}" Click="Edit"/>
                     <MenuItem Header="Удалить" Click="Remove"/>
