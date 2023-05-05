@@ -23,6 +23,7 @@
                     </Image.Source>
                 </Image>
                 <StackPanel Grid.Column="1" Margin="10">
+                    <TextBlock Text="{Binding IdPaintNavigation.Title, StringFormat= Название картины: {0}}"/>
                     <TextBlock Text="{Binding IdCreatorNavigation.Name, StringFormat = Художник: {0}}"/>
                     <TextBlock Text="{Binding IdPaintNavigation.DateOfCreate, StringFormat = Дата создания: {0}}"/>
                     <TextBlock Text="{Binding IdPaintNavigation.GenreNavigation.Genre1, StringFormat = Жанр: {0}}"/>
@@ -53,7 +54,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button BorderThickness="0" Grid.Column="0" Background="#fbf2e7">
+            <Button Click="SortDate" BorderThickness="0" Grid.Column="0" Background="#fbf2e7">
                 Что нового?
             </Button>
             <Button Click ="OurTime" BorderThickness="0" Grid.Column="1" Background="#fbf2e7">

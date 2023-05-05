@@ -19,19 +19,16 @@ namespace Galery
     /// </summary>
     public partial class Input : Window
     {
-        GalleryContext galleryContext;
         public string Login { get; set; }
-        public string Password { get; set; }
         public Input()
         {
             InitializeComponent();
             DataContext = this;
-            galleryContext = new GalleryContext();
         }
 
         private void buttonAuth(object sender, RoutedEventArgs e)
         {
-            var user = galleryContext.Admins.FirstOrDefault(a => a.Password == Password && a.Login == Login);
+            var user = DB.Instance.Admins.FirstOrDefault(a => a.Password == password.Password && a.Login == Login);
             if (user != null)
             {
                 MessageBox.Show("Здравствуйте! "+user.Name);
@@ -45,7 +42,6 @@ namespace Galery
 
         private void buttonSignIn(object sender, RoutedEventArgs e)
         {
-            galleryContext.Dispose();
             MainWindow mv = new MainWindow(false);
             mv.Show();
             Close();

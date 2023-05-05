@@ -23,7 +23,7 @@
         <Label MinWidth="200" Content="Логин" FontSize="15" HorizontalContentAlignment="Center" Padding="5" Margin="-3"/>
         <TextBox Text="{Binding Login}" Margin="5" Padding="5"/>
         <Label MinWidth="200" Content="Пароль" FontSize="15" HorizontalContentAlignment="Center" Padding="5" Margin="-3"/>
-        <TextBox Text="{Binding Password}" Margin="5" Padding="5"/>
+        <PasswordBox x:Name="password" Margin="5" Padding="5"/>
         <Button Content="Авторизоваться" BorderThickness="0" Margin="4" Width="150" Click="buttonAuth"/>
         <Button Content="Войти как гость" BorderThickness="0" Margin="4" Width="150" Click="buttonSignIn"/>
     </StackPanel>

@@ -24,6 +24,7 @@ namespace Galery
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private bool sortDate;
         public Crosscreatorpaint SelectedPaint { get; set; }
         public List<Crosscreatorpaint> ourPictures { get; set; }
         public List<Crosscreatorpaint> Paints { get; set; }
@@ -36,7 +37,6 @@ namespace Galery
                 Sort();
             }
         }
-        private GalleryContext galleryContext;
         private Time selectedTime;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -49,30 +49,34 @@ namespace Galery
         public MainWindow(bool v = false)
         {
             InitializeComponent();
-            galleryContext = new GalleryContext();
             IsAdmin = v;
             DataContext = this;
-            Time = galleryContext.Times.ToList();
+            Time = DB.Instance.Times.ToList();
             Time.RemoveAt(Time.Count - 1);
             Time.Add(new Galery.Time { Time1 = "Все эпохи" });
             SelectedTime = Time.First();
         }
         public void Sort()
         {
-            Paints = galleryContext.Crosscreatorpaints.
+            Paints = DB.Instance.Crosscreatorpaints.
                 Include(s => s.IdCreatorNavigation).
                 Include(s => s.IdPaintNavigation.TimeNavigation).
                 Include(s => s.IdPaintNavigation.GenreNavigation).
                 Include(s => s.IdPaintNavigation).
                 Where(s => selectedTime.Id == 0 || s.IdPaintNavigation.Time == selectedTime.Id).ToList();
-            /*var r = galleryContext.Paints.ToList();
+            if (sortDate)
+            {
+                Paints.Sort((x,y)=>y.IdPaintNavigation.Date.Value.CompareTo(x.IdPaintNavigation.Date.Value));
+                sortDate = false;
+            }
+            /*var r = DB.Instance.Paints.ToList();
             Paints = new();
             for (int i = 0; i < r.Count; i++)
             {
                 Paints.Add(new PaintOutPut
                 {
-                    Creator = galleryContext.Creators.Include(s=>s.GenreNavigation.Paints).Where(a =>
-                    a.Id == galleryContext.Crosscreatorpaints.Where(a =>
+                    Creator = DB.Instance.Creators.Include(s=>s.GenreNavigation.Paints).Where(a =>
+                    a.Id == DB.Instance.Crosscreatorpaints.Where(a =>
                     a.IdPaint == r[i].Id).Select(a=>
                     a.IdCreator).FirstOrDefault()).FirstOrDefault().Name,
                     Time = r[i].TimeNavigation.Time1,
@@ -87,7 +91,7 @@ namespace Galery
             }
             if (SelectedTime != Time.Count - 1)
             {
-                var times = galleryContext.Times.ToArray();
+                var times = DB.Instance.Times.ToArray();
                 int id = times[selectedTime].Id;
                 Paints = Paints.Where(a => a.TimeId == id).ToList();
             }*/
@@ -120,9 +124,15 @@ namespace Galery
         }
         private void Remove(object sender, RoutedEventArgs e)
         {
-            galleryContext.Crosscreatorpaints.Remove(SelectedPaint);
-            galleryContext.Paints.Remove(SelectedPaint.IdPaintNavigation);
-            galleryContext.SaveChanges();
+            DB.Instance.Crosscreatorpaints.Remove(SelectedPaint);
+            DB.Instance.Paints.Remove(SelectedPaint.IdPaintNavigation);
+            DB.Instance.SaveChanges();
+            Sort();
+        }
+
+        private void SortDate(object sender, RoutedEventArgs e)
+        {
+            sortDate = true;
             Sort();
         }
     }

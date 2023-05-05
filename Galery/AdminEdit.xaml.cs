@@ -22,7 +22,7 @@ namespace Galery
     /// </summary>
     public partial class AdminEdit : Window, INotifyPropertyChanged
     {
-
+        
         public List<Genre> Genres { get; set; }
         public List<Time> Times { get; set; }
         public List<Creator> Creators { get; set; } = new List<Creator>();
@@ -32,10 +32,9 @@ namespace Galery
         public AdminEdit(Crosscreatorpaint paint)
         {
             InitializeComponent();
-            GalleryContext galleryContext = new GalleryContext();
-            Genres = galleryContext.Genres.ToList();
-            Times = galleryContext.Times.ToList();
-            Creators = galleryContext.Creators.ToList();
+            Genres = DB.Instance.Genres.ToList();
+            Times = DB.Instance.Times.ToList();
+            Creators = DB.Instance.Creators.ToList();
             Paint = paint;
             DataContext = this;
         }
@@ -44,10 +43,11 @@ namespace Galery
 
         private void Apply(object sender, RoutedEventArgs e)
         {
-            GalleryContext galleryContext = new GalleryContext();
-            galleryContext.Paints.Update(Paint.IdPaintNavigation);
-            galleryContext.Creators.Update(Paint.IdCreatorNavigation);
-            galleryContext.SaveChanges();
+            Paint.IdPaintNavigation.Date = DateTime.Now;
+            DB.Instance.Paints.Update(Paint.IdPaintNavigation);
+            DB.Instance.Creators.Update(Paint.IdCreatorNavigation);
+            DB.Instance.SaveChanges();
+            Close();
             //что-то
         }
 

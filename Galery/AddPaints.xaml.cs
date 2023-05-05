@@ -23,17 +23,17 @@ namespace Galery
     /// </summary>
     public partial class AddPaints : Window, INotifyPropertyChanged
     {
-        GalleryContext galleryContext;
+        public List<Creator> Creators { get; set; } = new List<Creator>();
         public string Creator { get; set; }
-        public Paint Paint { get; set; } = new Paint();
+        public Crosscreatorpaint Paint { get; set; } = new Crosscreatorpaint();
         public List<Genre> ListGenre { get; set; }
         public List<Time> ListTime { get; set; }
         public AddPaints()
         {
             InitializeComponent();
-            galleryContext = new GalleryContext();
-            ListGenre = galleryContext.Genres.ToList();
-            ListTime = galleryContext.Times.ToList();
+            ListGenre = DB.Instance.Genres.ToList();
+            ListTime = DB.Instance.Times.ToList();
+            Creators = DB.Instance.Creators.ToList();
             DataContext = this;
         }
 
@@ -55,12 +55,12 @@ namespace Galery
                     {
                         return;
                     }
-                    Paint.PhotoPaint = newPath;
+                    Paint.IdPaintNavigation.PhotoPaint = newPath;
                 }
                 else
                 {
-                    Paint.PhotoPaint = newPath;
-                    File.Copy(openFileDialog.FileName, Paint.PhotoPaint);
+                    Paint.IdPaintNavigation.PhotoPaint = newPath;
+                    File.Copy(openFileDialog.FileName, Paint.IdPaintNavigation.PhotoPaint);
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Paint)));
             }
@@ -74,13 +74,9 @@ namespace Galery
                 {
                     Name = Creator,
                 };
-                galleryContext.Crosscreatorpaints.Add(new Crosscreatorpaint
-                {
-                    IdCreatorNavigation = creator,
-                    IdPaintNavigation = Paint
-                });                      
-                galleryContext.SaveChanges();
-                Paint = new Paint();
+                DB.Instance.Crosscreatorpaints.Add(Paint);                      
+                DB.Instance.SaveChanges();
+                Paint = new Crosscreatorpaint();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Paint)));
             }
             catch (Exception ex)
