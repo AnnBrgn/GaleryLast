@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Galery;
 
@@ -12,6 +15,12 @@ public partial class Paint
     public string? Description { get; set; }
 
     public string? PhotoPaint { get; set; }
+    public BitmapImage PhotoBytes {
+        get
+        {
+            return new BitmapImage(new Uri(PhotoPaint, UriKind.RelativeOrAbsolute));
+        }
+    }
 
     public int? Genre { get; set; }
 

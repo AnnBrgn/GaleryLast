@@ -23,22 +23,23 @@
                 <TextBlock Text="Информация о картине:" HorizontalAlignment="Center" FontSize="15" Margin="5"/>
 
                 <TextBlock Text="Название картины" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Paint.Title}" Margin="3" Width="180" Height="20"/>
+                <TextBox Text="{Binding Paint.IdPaintNavigation.Title}" Margin="3" Width="180" Height="20"/>
 
                 <TextBlock Text="Художник" HorizontalAlignment="Center"/>
                 <ComboBox DisplayMemberPath="Name" 
                           ItemsSource="{Binding Creators}"
                           Width="170" Height="20" Margin="3"
+                          SelectedItem="{Binding Paint.IdCreatorNavigation}"
                 />
               
                 <TextBlock Text="Дата создания" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Paint.DateOfCreate}" Margin="3" Width="180" Height="20"/>
+                <TextBox Text="{Binding Paint.IdPaintNavigation.DateOfCreate}" Margin="3" Width="180" Height="20"/>
 
                 <TextBlock Text="Местоположение" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Paint.Location}" Margin="3" Width="180" Height="20"/>
+                <TextBox Text="{Binding Paint.IdPaintNavigation.Location}" Margin="3" Width="180" Height="20"/>
 
                 <TextBlock Text="Материал" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Paint.Material}" Margin="3" Width="180" Height="20"/>
+                <TextBox Text="{Binding Paint.IdPaintNavigation.Material}" Margin="3" Width="180" Height="20"/>
             </StackPanel>
         </Border>
 
@@ -48,18 +49,18 @@
 
                 <TextBlock Text="Жанр" HorizontalAlignment="Center"/>
                 <ComboBox DisplayMemberPath="Genre1" 
-                          SelectedItem="{Binding Paint.GenreNavigation}" 
+                          SelectedItem="{Binding Paint.IdPaintNavigation.GenreNavigation}" 
                           ItemsSource="{Binding ListGenre}" 
                           Width="170" Height="20" Margin="3"/>
                 <TextBlock Text="Эпоха" HorizontalAlignment="Center"/>
                 <ComboBox DisplayMemberPath="Time1" 
-                          SelectedItem="{Binding Paint.TimeNavigation}" 
+                          SelectedItem="{Binding Paint.IdPaintNavigation.TimeNavigation}" 
                           ItemsSource="{Binding ListTime}" 
                           Width="170" Height="20" Margin="3"/>
             </StackPanel>
         </Border>
         <StackPanel Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="{Binding Paint.PhotoPaint}" 
+            <Image Source="{Binding Paint.IdPaintNavigation.PhotoPaint}" 
                    Width="400" Stretch="UniformToFill" Height="400"/>
         </StackPanel>
 

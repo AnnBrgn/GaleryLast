@@ -97,6 +97,13 @@ namespace Galery
             }*/
             OnPropertyChanged(nameof(Paints));
         }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            new Input().Show();
+            base.OnClosing(e);
+        }
+
         public void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -134,6 +141,11 @@ namespace Galery
         {
             sortDate = true;
             Sort();
+        }
+
+        private void EditCreators(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

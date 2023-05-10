@@ -17,10 +17,10 @@
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0" Stretch="UniformToFill" Width="450" Margin="10">
-                    <Image.Source>
-                        <BitmapImage UriSource="{Binding IdPaintNavigation.PhotoPaint}"/>
-                    </Image.Source>
+                <Image Grid.Column="0" Stretch="UniformToFill" Width="450" Margin="10" Source="{Binding IdPaintNavigation.PhotoBytes}">
+                    <!--<Image.Source>
+                        <BitmapImage UriSource="{Binding IdPaintNavigation.PhotoBytes}"/>
+                    </Image.Source>-->
                 </Image>
                 <StackPanel Grid.Column="1" Margin="10">
                     <TextBlock Text="{Binding IdPaintNavigation.Title, StringFormat= Название картины: {0}}"/>
@@ -70,6 +70,8 @@
                     <MenuItem Header="Добавить" Click="Add"/>
                     <MenuItem Header="Редактировать" IsEnabled="{Binding IsAdmin}" Click="Edit"/>
                     <MenuItem Header="Удалить" Click="Remove"/>
+                    <MenuItem Header="Доб. художника" Click="AddCreators"/>
+                    <MenuItem Header="Ред. художника" Click="EditCreators"/>
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.Background>

@@ -35,6 +35,7 @@ namespace Galery
             ListTime = DB.Instance.Times.ToList();
             Creators = DB.Instance.Creators.ToList();
             DataContext = this;
+            Paint.IdPaintNavigation = new Paint();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -56,6 +57,7 @@ namespace Galery
                         return;
                     }
                     Paint.IdPaintNavigation.PhotoPaint = newPath;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Paint.IdPaintNavigation)));
                 }
                 else
                 {
@@ -74,7 +76,9 @@ namespace Galery
                 {
                     Name = Creator,
                 };
-                DB.Instance.Crosscreatorpaints.Add(Paint);                      
+                Paint.IdPaintNavigation.Date = DateTime.Now;
+                DB.Instance.Paints.Add(Paint.IdPaintNavigation);
+                DB.Instance.Crosscreatorpaints.Add(Paint);
                 DB.Instance.SaveChanges();
                 Paint = new Crosscreatorpaint();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Paint)));

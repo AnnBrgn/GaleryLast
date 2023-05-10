@@ -1,0 +1,17 @@
+﻿<Window x:Class="Galery.AddCreator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galery"
+        mc:Ignorable="d"
+        Title="AddCreator" Height="200" Width="300"
+        FontFamily="Franklin Gothic">
+    <Grid Background="#FFFAF2">
+        <StackPanel VerticalAlignment="Top" Margin="20">
+            <TextBlock Text="Добавьте нового художника:" HorizontalAlignment="Center" Margin="5"/>
+            <TextBox Text="{Binding Creators}" Width="170" Margin="5" Height="20" VerticalAlignment="Top"/>
+            <Button Click="AddCreators" Content="Применить" Width="120" Height="20" Margin="5" VerticalAlignment="Top"/>
+        </StackPanel>
+    </Grid>
+</Window>
