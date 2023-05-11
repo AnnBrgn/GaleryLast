@@ -5,17 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
-        Title="CreatorAddEdit" Height="200" Width="300"
+        Title="Редактор художника" MinHeight="250" MaxHeight="250" MinWidth="300" MaxWidth="300"
         FontFamily="Franklin Gothic">
     <Grid Background="#FFFAF2">
         <StackPanel VerticalAlignment="Top" Margin="20">
             <TextBlock Text="Выберите художника, что бы редактировать:" HorizontalAlignment="Center" Margin="5"/>
-            <ComboBox DisplayMemberPath="Name" 
+            <ComboBox     DisplayMemberPath="Name" 
                           ItemsSource="{Binding Creators}"
                           Width="170" Height="20" Margin="5" VerticalAlignment="Top"
-                          SelectedItem="{Binding Paint.IdCreatorNavigation}"/>
-            <TextBox Width="170" Margin="5" Height="20" VerticalAlignment="Top"/>
-            <Button Click="EditCreator" Content="Применить" Width="120" Height="20" Margin="5" VerticalAlignment="Top"/>
+                          SelectedItem="{Binding Creator}"/>
+            <TextBox Width="170" Margin="5" Height="20" VerticalAlignment="Top" Text="{Binding Creator.Name}"/>
+            <TextBlock Text="Укажите жанр художника" HorizontalAlignment="Center"/>
+            <ComboBox 
+                DisplayMemberPath="Genre1" 
+                SelectedItem="{Binding Creator.GenreNavigation}" 
+                ItemsSource="{Binding ListGenre}" 
+                Width="170" Height="20" Margin="5"/>
+            <Button Click="Edit" Content="Применить" Width="120" Height="20" Margin="5" VerticalAlignment="Top"/>
         </StackPanel>
     </Grid>
 </Window>

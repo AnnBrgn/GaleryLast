@@ -19,14 +19,18 @@ namespace Galery
     /// </summary>
     public partial class AddCreator : Window
     {
+        public Creator Creators { get; set; } = new Creator();
+        public List<Genre> ListGenre { get; set; }
         public AddCreator()
         {
             InitializeComponent();
+            ListGenre = DB.Instance.Genres.ToList();
             DataContext = this;
         }
-        private void AddCreators(object sender, RoutedEventArgs e)
+        private void Add(object sender, RoutedEventArgs e)
         {
-
+            DB.Instance.Add(Creators);
+            DB.Instance.SaveChanges();
         }
     }
 }

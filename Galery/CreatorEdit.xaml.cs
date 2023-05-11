@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,17 +19,34 @@ namespace Galery
     /// <summary>
     /// Логика взаимодействия для CreatorAddEdit.xaml
     /// </summary>
-    public partial class CreatorAddEdit : Window
+    public partial class CreatorAddEdit : Window, INotifyPropertyChanged
     {
+        private Creator creator;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public List<Genre> ListGenre { get; set; }
+        public Creator Creator
+        {
+            get => creator;
+            set 
+            {
+                creator = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Creator"));
+            } 
+        }
+        public List<Creator> Creators { get; set; } = new List<Creator>();
         public CreatorAddEdit()
         {
             InitializeComponent();
+            Creators = DB.Instance.Creators.Include(s => s.GenreNavigation).ToList();
+            ListGenre = DB.Instance.Genres.ToList();
             DataContext = this;
         }
-
-        private void EditCreator(object sender, RoutedEventArgs e)
+        private void Edit(object sender, RoutedEventArgs e)
         {
-
+            DB.Instance.SaveChanges();
+            Close();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
-        Title="AdminEdit" Height="450" Width="800"
+        Title="Редактирование картины" Height="450" Width="800"
         FontFamily="Franklin Gothic" ResizeMode="NoResize">
     <Grid Background="#FFFFF5ED">
         <Grid.RowDefinitions>

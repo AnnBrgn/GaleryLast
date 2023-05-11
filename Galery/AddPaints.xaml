@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
-        Title="AddPaints" Height="500" Width="800"
+        Title="Добавление картины" Height="500" Width="800"
         FontFamily="Franklin Gothic">
     <Grid Background="#FFFAF2">
         <Grid.ColumnDefinitions>

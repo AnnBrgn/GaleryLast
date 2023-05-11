@@ -145,7 +145,14 @@ namespace Galery
 
         private void EditCreators(object sender, RoutedEventArgs e)
         {
+            if (IsAdmin)
+                new CreatorAddEdit().Show();
+        }
 
+        private void AddCreators(object sender, RoutedEventArgs e)
+        {
+            if (IsAdmin)
+                new AddCreator().Show();
         }
     }
 }

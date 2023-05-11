@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
-        Title="AddCreator" Height="200" Width="300"
+        Title="Добавление художника" MinHeight="200" MaxHeight="200" MaxWidth="300" MinWidth="300"
         FontFamily="Franklin Gothic">
     <Grid Background="#FFFAF2">
         <StackPanel VerticalAlignment="Top" Margin="20">
             <TextBlock Text="Добавьте нового художника:" HorizontalAlignment="Center" Margin="5"/>
-            <TextBox Text="{Binding Creators}" Width="170" Margin="5" Height="20" VerticalAlignment="Top"/>
-            <Button Click="AddCreators" Content="Применить" Width="120" Height="20" Margin="5" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding Creators.Name}" Width="170" Margin="5" Height="20" VerticalAlignment="Top"/>
+            <TextBlock Text="Укажите жанр художника:" HorizontalAlignment="Center"/>
+            <ComboBox 
+                DisplayMemberPath="Genre1" 
+                SelectedItem="{Binding Creators.GenreNavigation}" 
+                ItemsSource="{Binding ListGenre}" 
+                Width="170" Height="20" Margin="5"/>
+            <Button Click="Add" Content="Применить" Width="120" Height="20" Margin="5" VerticalAlignment="Top"/>
         </StackPanel>
     </Grid>
 </Window>
