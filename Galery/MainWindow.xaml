@@ -64,14 +64,14 @@
                       HorizontalContentAlignment="Center"
             />
         </Grid>
-        <ListView Grid.Row="2" ItemsSource="{Binding Paints}" SelectedItem="{Binding SelectedPaint}" ItemTemplate="{StaticResource PaintTemplate}">
+        <ListView Grid.Row="2" ItemsSource="{Binding Paints}" SelectedItem="{Binding SelectedPaint}" ItemTemplate="{StaticResource PaintTemplate}" PreviewMouseLeftButtonUp="ClickSelectedItem">
             <ListView.ContextMenu>
                 <ContextMenu Visibility="{Binding Admin}">
                     <MenuItem Header="Добавить" Click="Add"/>
                     <MenuItem Header="Редактировать" IsEnabled="{Binding IsAdmin}" Click="Edit"/>
                     <MenuItem Header="Удалить" Click="Remove"/>
-                    <MenuItem Header="Доб. художника" Click="AddCreators"/>
-                    <MenuItem Header="Ред. художника" Click="EditCreators"/>
+                    <MenuItem Header="Добавить художника" Click="AddCreators"/>
+                    <MenuItem Header="Редактировать художника" Click="EditCreators"/>
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.Background>

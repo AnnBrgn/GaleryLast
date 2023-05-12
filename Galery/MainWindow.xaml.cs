@@ -25,7 +25,15 @@ namespace Galery
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private bool sortDate;
-        public Crosscreatorpaint SelectedPaint { get; set; }
+        public Crosscreatorpaint SelectedPaint
+        {
+            get => selectedPaint;
+            set
+            {
+                selectedPaint = value;
+                SelectPaintPreview();
+            }
+        }
         public List<Crosscreatorpaint> ourPictures { get; set; }
         public List<Crosscreatorpaint> Paints { get; set; }
         public Time SelectedTime
@@ -38,6 +46,7 @@ namespace Galery
             }
         }
         private Time selectedTime;
+        private Crosscreatorpaint selectedPaint;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -46,6 +55,7 @@ namespace Galery
 
         public bool IsAdmin { get; set; }
         public Visibility Admin { get { return IsAdmin ? Visibility.Visible : Visibility.Hidden; } }
+
         public MainWindow(bool v = false)
         {
             InitializeComponent();
@@ -66,7 +76,7 @@ namespace Galery
                 Where(s => selectedTime.Id == 0 || s.IdPaintNavigation.Time == selectedTime.Id).ToList();
             if (sortDate)
             {
-                Paints.Sort((x,y)=>y.IdPaintNavigation.Date.Value.CompareTo(x.IdPaintNavigation.Date.Value));
+                Paints.Sort((x, y) => y.IdPaintNavigation.Date.Value.CompareTo(x.IdPaintNavigation.Date.Value));
                 sortDate = false;
             }
             /*var r = DB.Instance.Paints.ToList();
@@ -117,7 +127,7 @@ namespace Galery
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            if(IsAdmin)
+            if (IsAdmin)
                 new AddPaints().Show();
         }
         private void Edit(object sender, RoutedEventArgs e)
@@ -153,6 +163,20 @@ namespace Galery
         {
             if (IsAdmin)
                 new AddCreator().Show();
+        }
+
+        private void SelectPaintPreview()
+        {
+            bool mouseIsDown = Mouse.LeftButton == MouseButtonState.Pressed;
+            if (SelectedPaint != null && mouseIsDown)
+            {
+                new InfoPicture(SelectedPaint).Show();
+            }
+        }
+
+        private void ClickSelectedItem(object sender, MouseButtonEventArgs e)
+        {
+            SelectPaintPreview();
         }
     }
 }

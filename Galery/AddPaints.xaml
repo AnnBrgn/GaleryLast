@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
         Title="Добавление картины" Height="500" Width="800"
+        Background="#FFFAF2"
         FontFamily="Franklin Gothic">
-    <Grid Background="#FFFAF2">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="300"/>
@@ -42,7 +43,7 @@
                 <TextBox Text="{Binding Paint.IdPaintNavigation.Material}" Margin="3" Width="180" Height="20"/>
             </StackPanel>
         </Border>
-
+        <TextBox Grid.Row="1" Grid.RowSpan="3" Margin="12" Text="{Binding Paint.IdPaintNavigation.Description}" TextChanged="TextBox_TextChanged"/>
         <Border  Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="#373432" Margin="8">
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="15">
                 <TextBlock Text="Дополнительная информация:" HorizontalAlignment="Center" FontSize="15" Margin="8"/>
@@ -59,16 +60,13 @@
                           Width="170" Height="20" Margin="3"/>
             </StackPanel>
         </Border>
-        <StackPanel Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="{Binding Paint.IdPaintNavigation.PhotoPaint}" 
-                   Width="400" Stretch="UniformToFill" Height="400"/>
+                   Width="450" Stretch="UniformToFill" Height="180"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">
-            <Button Click="AddPaintPhoto" Content="Добавить фото" 
-                    Background="#FAFAFA" Width="120" Height="20" Margin="15"
+        <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Click="AddPaintPhoto" Content="Добавить фото" 
+                    Background="#FAFAFA" Width="120" Height="20" Margin="5"
             />
-        </StackPanel>
         <Button Grid.Column="1" Grid.Row="2" Content="Сохранить" Click="AddPaint" Background="#FAFAFA" Width="120" Height="20" Margin="15"/>
     </Grid>
 </Window>
