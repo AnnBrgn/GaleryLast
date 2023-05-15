@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
-        Title="Редактирование картины" Height="450" Width="800"
+        Title="Редактирование картины" Height="480" Width="800"
         FontFamily="Franklin Gothic" ResizeMode="NoResize">
     <Grid Background="#FFFFF5ED">
         <Grid.RowDefinitions>
-            <RowDefinition/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -48,7 +48,9 @@
                 
             </StackPanel>
         </Border>
+        
         <StackPanel Grid.Row="1" Margin="10">
+            <TextBlock Text="{Binding Paint.IdPaintNavigation.Title, StringFormat = Название картины: {0}}"/>
             <TextBlock Text="{Binding Paint.IdCreatorNavigation.Name, StringFormat = Художник: {0}}"/>
             <TextBlock Text="{Binding Paint.IdPaintNavigation.DateOfCreate, StringFormat = Дата создания: {0}}"/>
             <TextBlock Text="{Binding Paint.IdPaintNavigation.GenreNavigation.Genre1, StringFormat = Жанр: {0}}"/>
@@ -56,6 +58,10 @@
             <TextBlock Text="{Binding Paint.IdPaintNavigation.Location, StringFormat = Местоположение: {0}}"/>
             <TextBlock Text="{Binding Paint.IdPaintNavigation.Material, StringFormat = Материал: {0}}"/>
         </StackPanel>
-        <Image  Margin="10" Source="{Binding Paint.IdPaintNavigation.PhotoPaint}"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <Image 
+                HorizontalAlignment="Left" Margin="8" Height="150" Width="300" Source="{Binding Paint.IdPaintNavigation.PhotoPaint}"/>
+            <TextBox Margin="8 0" Height="150" Width="550" Text="{Binding Paint.IdPaintNavigation.Description}"/>
+        </StackPanel>
     </Grid>
 </Window>

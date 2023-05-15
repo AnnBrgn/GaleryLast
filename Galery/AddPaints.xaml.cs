@@ -87,6 +87,7 @@ namespace Galery
             {
                 MessageBox.Show(ex.Message);
             }
+            Close();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

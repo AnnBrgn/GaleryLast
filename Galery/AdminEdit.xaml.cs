@@ -22,7 +22,7 @@ namespace Galery
     /// </summary>
     public partial class AdminEdit : Window, INotifyPropertyChanged
     {
-        
+        public Paint Description { get; set; }
         public List<Genre> Genres { get; set; }
         public List<Time> Times { get; set; }
         public List<Creator> Creators { get; set; } = new List<Creator>();
@@ -78,6 +78,11 @@ namespace Galery
             //что-то
             //ещё что-то
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Paint)));
+        }
+
+        private void AddInfo(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
