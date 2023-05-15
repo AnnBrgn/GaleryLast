@@ -43,7 +43,7 @@
                 <TextBox Text="{Binding Paint.IdPaintNavigation.Material}" Margin="3" Width="180" Height="20"/>
             </StackPanel>
         </Border>
-        <TextBox Grid.Row="1" Grid.RowSpan="3" Margin="12" Text="{Binding Paint.IdPaintNavigation.Description}" TextChanged="TextBox_TextChanged"/>
+        <TextBox Grid.Row="1" Grid.RowSpan="3" Margin="12" Text="{Binding Paint.IdPaintNavigation.Description}" TextWrapping="Wrap"/>
         <Border  Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="#373432" Margin="8">
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="15">
                 <TextBlock Text="Дополнительная информация:" HorizontalAlignment="Center" FontSize="15" Margin="8"/>

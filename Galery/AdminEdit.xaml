@@ -61,7 +61,7 @@
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
             <Image 
                 HorizontalAlignment="Left" Margin="8" Height="150" Width="300" Source="{Binding Paint.IdPaintNavigation.PhotoPaint}"/>
-            <TextBox Margin="8 0" Height="150" Width="550" Text="{Binding Paint.IdPaintNavigation.Description}"/>
+            <TextBox Margin="8 0" Height="150" Width="550" TextWrapping="Wrap" Text="{Binding Paint.IdPaintNavigation.Description}"/>
         </StackPanel>
     </Grid>
 </Window>
