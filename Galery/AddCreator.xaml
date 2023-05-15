@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galery"
         mc:Ignorable="d"
-        Title="Добавление художника" MinHeight="200" MaxHeight="200" MaxWidth="300" MinWidth="300"
+        Title="Добавление художника" MinHeight="205" MaxHeight="205" MaxWidth="300" MinWidth="300"
         FontFamily="Franklin Gothic">
     <Grid Background="#FFFAF2">
         <StackPanel VerticalAlignment="Top" Margin="20">

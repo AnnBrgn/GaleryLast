@@ -72,6 +72,7 @@
                     <MenuItem Header="Удалить" Click="Remove"/>
                     <MenuItem Header="Добавить художника" Click="AddCreators"/>
                     <MenuItem Header="Редактировать художника" Click="EditCreators"/>
+                    <MenuItem Header="Удалить художника" Click="RemoveCreators"/>
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.Background>

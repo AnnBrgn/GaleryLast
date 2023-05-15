@@ -178,5 +178,11 @@ namespace Galery
         {
             SelectPaintPreview();
         }
+
+        private void RemoveCreators(object sender, RoutedEventArgs e)
+        {
+            if (IsAdmin)
+                new DeleteCreator().Show();
+        }
     }
 }
