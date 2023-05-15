@@ -31,6 +31,7 @@ namespace Galery
         {
             DB.Instance.Add(Creators);
             DB.Instance.SaveChanges();
+            Close();
         }
     }
 }
